@@ -821,5 +821,3 @@ function kerl
             echo "unknown command: $argv[1]"; kerl_usage; return 1
     end
 end
-
-kerl $argv
