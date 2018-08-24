@@ -555,18 +555,12 @@ end
 
 function kerl_list_print
     if test -f $KERL_BASE_DIR/otp_$argv[1]
-        # TODO
         if test (cat "$KERL_BASE_DIR/otp_$argv[1]" | wc -l| sed -e 's/^[[:space:]]*\(.?*\)[[:space:]]*$/\1/') != "0"
-            echo $argv | read -l first second
-            if test -z $second
-                cat "$KERL_BASE_DIR/otp_$argv[1]"
-            else
-                echo (cat "$KERL_BASE_DIR/otp_$argv[1]")
-            end
-            return 0
+            cat "$KERL_BASE_DIR/otp_$argv[1]"
         end
+    else
+        echo "There are no $argv[1] available"
     end
-    echo "There are no $argv[1] available"
 end
 
 function kerl_list_add
@@ -724,7 +718,7 @@ function kerl
                     rm -f "$KERL_BASE_DIR/otp_releases"
                     kerl_check_releases
                     echo "The available releases are:"
-                    kerl_list_print releases spaces
+                    kerl_list_print releases
                 case '*'
                     kerl_update_usage
                     return 1
@@ -737,7 +731,7 @@ function kerl
             switch "$argv[2]"
                 case releases
                     kerl_check_releases
-                    kerl_list_print $argv[2] space
+                    kerl_list_print $argv[2]
                     echo "Run \"kerl update releases\" to update this list from erlang.org"
                 case builds
                     kerl_list_print $argv[2]
