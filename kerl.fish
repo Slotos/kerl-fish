@@ -41,7 +41,7 @@ mkdir -p "$KERL_BASE_DIR"
 
 # source the config file if available
 if test -f "$KERL_CONFIG"
-    . "$KERL_CONFIG"
+    source "$KERL_CONFIG"
 end
 
 if test -n "$_KCO"
@@ -445,7 +445,7 @@ set -g -x MANPATH \$_KERL_MANPATH_REMOVABLE \$MANPATH
 set -g -x REBAR_PLT_DIR '$absdir'
 set -g -x _KERL_ACTIVE_DIR '$absdir'
 if test -f \"\$KERL_CONFIG\"
-    . \"\$KERL_CONFIG\"
+    source \"\$KERL_CONFIG\"
 end
 # TODO
 if test -n \"\$KERL_ENABLE_PROMPT\"
@@ -498,7 +498,7 @@ end
     end
 
     echo "You can activate this installation running the following command:"
-    echo ". $absdir/activate"
+    echo "source $absdir/activate"
     echo "Later on, you can leave the installation typing:"
     echo "kerl_deactivate"
 end
